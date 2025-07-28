@@ -50,7 +50,7 @@ func (m *Dagger) RunTests(ctx context.Context, dir *dagger.Directory) (string, e
 		From("golang:1.24").
 		WithMountedDirectory("/src", dir).
 		WithWorkdir("/src").
+		WithExec([]string{"go", "mod", "download"}).
 		WithExec([]string{"go", "test", "-v", "./tests/..."}).
-		// Terminal().
 		Stdout(ctx)
 }
