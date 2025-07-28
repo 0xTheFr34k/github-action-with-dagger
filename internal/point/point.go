@@ -19,7 +19,7 @@ func (p1 Vec2) Add(p2 Vec2) Vec2 {
 }
 
 func (p1 Vec3) Add(p2 Vec3) Vec3 {
-	return Vec3{X: p1.X + p2.X, Y: p1.Y + p2.Y}
+	return Vec3{X: p1.X + p2.X, Y: p1.Y + p2.Y, Z: p1.Z + p2.Z}
 }
 
 func (p *Vec2) String() string {
