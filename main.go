@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	p := point.Point{X: 1.2, Y: 3.4}
+	p := point.Vec2{X: 1.2, Y: 3.4}
 	fmt.Println(p.String())
 }
