@@ -14,3 +14,20 @@ jobs:
           module: .dagger
           call: run-tests --dir .
           version: "latest"
+
+  on-success:
+    needs: dagger
+    if : success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: deployed successfully
+        run: echo code deployed successfully
+        # run: echo ${{secrets.GH_TOKEN}}
+
+  on-failure:
+    needs: dagger
+    if : failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: deployment failed
+        run: echo code failed to deploy
