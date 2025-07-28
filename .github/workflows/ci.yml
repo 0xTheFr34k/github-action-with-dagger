@@ -1,7 +1,15 @@
-- name: Hello
-  uses: dagger/dagger-for-github@8.0.0
-  with:
-    module: github.com/shykes/daggerverse/hello
-    call: hello --greeting Hola --name Jeremy
-    cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-    version: "latest"  # semver x.y.z
+name: Dagger CI/CD
+on: [push]
+jobs:
+  dagger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Hello
+        uses: dagger/dagger-for-github@8.0.0
+        with:
+          module: github.com/shykes/daggerverse/hello
+          call: hello --greeting Hola --name Jeremy
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+          version: "latest"
