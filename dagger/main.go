@@ -35,3 +35,21 @@ func (m *Dagger) GrepDir(ctx context.Context, directoryArg *dagger.Directory, pa
 		WithExec([]string{"grep", "-R", pattern, "."}).
 		Stdout(ctx)
 }
+
+func (m *Dagger) ListDir(ctx context.Context, dir *dagger.Directory) (string, error) {
+	return dag.Container().
+		From("alpine:latest").
+		WithMountedDirectory("/mnt", dir).
+		WithWorkdir("/mnt").
+		WithExec([]string{"ls", "-la"}).
+		Stdout(ctx)
+}
+
+func (m *Dagger) RunTests(ctx context.Context, dir *dagger.Directory) (string, error) {
+	return dag.Container().
+		From("golang:1.24").
+		WithMountedDirectory("/src", dir).
+		WithWorkdir("/src").
+		WithExec([]string{"go", "test", "-v", "./tests/..."}).
+		Stdout(ctx)
+}
