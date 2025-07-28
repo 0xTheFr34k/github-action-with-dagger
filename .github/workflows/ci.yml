@@ -11,6 +11,6 @@ jobs:
       - name: run tests
         uses: dagger/dagger-for-github@8.0.0
         with:
-          module: dagger
+          module: .dagger
           call: run-tests --dir .
           version: "latest"

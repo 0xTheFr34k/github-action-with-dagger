@@ -51,5 +51,6 @@ func (m *Dagger) RunTests(ctx context.Context, dir *dagger.Directory) (string, e
 		WithMountedDirectory("/src", dir).
 		WithWorkdir("/src").
 		WithExec([]string{"go", "test", "-v", "./tests/..."}).
+		// Terminal().
 		Stdout(ctx)
 }
